@@ -3,15 +3,16 @@
 
 import React from 'react'
 
+interface LinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  href: string
+  children: React.ReactNode
+}
+
 export default function Link({
   href,
   children,
   ...props
-}: {
-  href: string
-  children: React.ReactNode
-  [key: string]: any
-}) {
+}: LinkProps) {
   return (
     <a href={href} {...props}>
       {children}
