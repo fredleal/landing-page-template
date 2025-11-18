@@ -2,10 +2,6 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 
 describe('usePageConfig Hook - localStorage Integration', () => {
   const TEST_KEY = 'test-key'
-  const DEFAULT_VALUE = {
-    title: 'Default Title',
-    description: 'Default Description',
-  }
 
   beforeEach(() => {
     localStorage.clear()
@@ -128,10 +124,9 @@ describe('usePageConfig Hook - localStorage Integration', () => {
   describe('Practical Hook Usage Patterns', () => {
     it('should simulate saveConfig pattern', () => {
       const key = 'page-config-hero'
-      const defaultValue = { title: 'Default', subtitle: 'Sub' }
 
       // Simulate saveConfig
-      function saveConfig(newData: typeof defaultValue) {
+      function saveConfig(newData: { title: string; subtitle: string }) {
         try {
           localStorage.setItem(`${key}`, JSON.stringify(newData))
           return true
