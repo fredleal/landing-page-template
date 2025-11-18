@@ -1,74 +1,76 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import { HeroSection, type HeroSectionProps } from '@fredleal/saas-components'
+
+interface HeroConfig extends Omit<HeroSectionProps, 'primaryCTA' | 'secondaryCTA'> {
+  primaryCTA?: { label: string; href: string }
+  secondaryCTA?: { label: string; href: string }
+  backgroundColor?: string
+  showGradient?: boolean
+  alignment?: 'left' | 'center' | 'right'
+  minHeight?: 'auto' | 'screen' | 'half-screen'
+}
+
+const DEFAULT_CONFIG: HeroConfig = {
+  title: 'The Landing Page Builder for Modern Teams',
+  subtitle: 'Create stunning landing pages in minutes',
+  description:
+    'Create stunning, conversion-optimized landing pages in minutes. No coding required. Beautiful templates, smart analytics, and powerful integrations—all in one place.',
+  backgroundGradient: true,
+  primaryCTA: { label: 'Start Free Trial', href: '#' },
+  secondaryCTA: { label: 'Watch Demo', href: '#' },
+}
+
 export function Hero() {
+  const [config, setConfig] = useState<HeroConfig>(DEFAULT_CONFIG)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('page-config-hero')
+      if (saved) {
+        setConfig(JSON.parse(saved))
+      }
+    } catch (error) {
+      console.error('Erro ao carregar configuração:', error)
+    }
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
+
+  const heroProps: HeroSectionProps = {
+    title: config.title,
+    subtitle: config.subtitle,
+    description: config.description,
+    backgroundGradient: config.showGradient !== false,
+    primaryCTA: config.primaryCTA
+      ? {
+          label: config.primaryCTA.label,
+          href: config.primaryCTA.href,
+        }
+      : undefined,
+    secondaryCTA: config.secondaryCTA
+      ? {
+          label: config.secondaryCTA.label,
+          href: config.secondaryCTA.href,
+        }
+      : undefined,
+  }
+
   return (
-    <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center overflow-hidden pt-20 pb-20">
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-50/80 via-white to-purple-50/50 z-0"></div>
-
-      {/* Animated Blobs */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-primary-300/20 rounded-full mix-blend-multiply filter blur-3xl animate-fade-in z-0"></div>
-      <div className="absolute -bottom-32 right-10 w-72 h-72 bg-secondary-300/20 rounded-full mix-blend-multiply filter blur-3xl animate-fade-in delay-200 z-0"></div>
-      <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-accent-300/20 rounded-full mix-blend-multiply filter blur-3xl animate-fade-in delay-400 z-0"></div>
-
-      {/* Content */}
-      <div className="relative z-10 container-max section-lg text-center">
-        <div className="max-w-4xl mx-auto space-y-8 animate-fade-in-up">
-          {/* Badge */}
-          <div className="flex justify-center">
-            <span className="badge-primary">✨ Launch Your Ideas Into Reality</span>
-          </div>
-
-          {/* Main Headline */}
-          <h1 className="text-display-xl lg:text-[3.5rem] font-bold leading-tight text-neutral-900">
-            The
-            <span className="text-gradient"> Landing Page </span>
-            Builder for
-            <br />
-            Modern Teams
-          </h1>
-
-          {/* Subheadline */}
-          <p className="text-body-lg text-neutral-600 max-w-2xl mx-auto">
-            Create stunning, conversion-optimized landing pages in minutes. No coding required.
-            Beautiful templates, smart analytics, and powerful integrations—all in one place.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <button className="btn-primary">
-              Start Free Trial
-            </button>
-            <button className="btn-outline">
-              Watch Demo
-            </button>
-          </div>
-
-          {/* Trust Badge */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-8 pt-8 border-t border-neutral-200">
-            <div className="text-sm text-neutral-600">
-              <span className="font-semibold text-neutral-900">10K+</span> teams building amazing landing pages
-            </div>
-            <div className="text-sm text-neutral-600">
-              <span className="font-semibold text-neutral-900">99.9%</span> uptime guaranteed
-            </div>
-            <div className="text-sm text-neutral-600">
-              <span className="font-semibold text-neutral-900">24/7</span> customer support
-            </div>
-          </div>
-        </div>
-
-        {/* Hero Image / Mockup */}
-        <div className="mt-20 relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-2xl blur-3xl"></div>
-          <div className="relative bg-gradient-to-b from-white to-neutral-50 rounded-2xl p-8 md:p-12 shadow-elevation border border-neutral-100">
-            <div className="aspect-video bg-gradient-to-br from-primary-100 to-secondary-100 rounded-xl flex items-center justify-center text-neutral-400">
-              <span className="text-center">
-                <p className="text-sm">Mockup Image Here</p>
-                <p className="text-xs">Dashboard Preview</p>
-              </span>
-            </div>
-          </div>
-        </div>
+    <div>
+      <HeroSection {...heroProps} />
+      {/* Admin Link */}
+      <div className="text-center py-4">
+        <a
+          href="/admin"
+          className="text-sm text-primary-600 hover:text-primary-700 font-medium underline"
+        >
+          Edit Hero Section →
+        </a>
       </div>
-    </section>
+    </div>
   )
 }
