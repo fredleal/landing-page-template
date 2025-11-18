@@ -243,9 +243,10 @@
     "@eslint/core" "^0.17.0"
     levn "^0.4.1"
 
-"@fredleal/saas-components@github:fredleal/template-saas-ecommerce#main":
+"@fredleal/saas-components@git+https://github.com/fredleal/template-saas-ecommerce.git#main":
   version "1.0.0"
-  resolved "git+ssh://git@github.com/fredleal/template-saas-ecommerce.git#0813c406d9a7c0d72803bad49fe081adef300a63"
+  resolved "git+ssh://git@github.com/fredleal/template-saas-ecommerce.git"
+  integrity sha512-/LiH7D1REXD7SWGxqjZtljBQOtesKM4XOvGEhG6uP2NyiEDvRaGBwes1Zpuvq061+aV17PwdmK44x3uw7lbbsA==
   dependencies:
     next "15.5.2"
     react "19.1.0"
@@ -797,17 +798,7 @@ ajv@^6.12.4:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-ajv@^8.0.0:
-  version "8.17.1"
-  resolved "https://registry.npmjs.org/ajv/-/ajv-8.17.1.tgz"
-  integrity sha512-B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g==
-  dependencies:
-    fast-deep-equal "^3.1.3"
-    fast-uri "^3.0.1"
-    json-schema-traverse "^1.0.0"
-    require-from-string "^2.0.2"
-
-ajv@^8.17.1:
+ajv@^8.0.0, ajv@^8.17.1:
   version "8.17.1"
   resolved "https://registry.npmjs.org/ajv/-/ajv-8.17.1.tgz"
   integrity sha512-B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g==
@@ -1282,11 +1273,6 @@ fraction.js@^5.3.4:
   version "5.3.4"
   resolved "https://registry.npmjs.org/fraction.js/-/fraction.js-5.3.4.tgz"
   integrity sha512-1X1NTtiJphryn/uLQz3whtY6jK3fTqoE3ohKs0tT+Ujr1W59oopxmoEh7Lu5p6vBaPbgoM0bzveAW4Qi5RyWDQ==
-
-fsevents@~2.3.2, fsevents@~2.3.3:
-  version "2.3.3"
-  resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz"
-  integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
 gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
