@@ -13,8 +13,8 @@ interface HeroConfig extends Omit<HeroSectionProps, 'primaryCTA' | 'secondaryCTA
 }
 
 const DEFAULT_CONFIG: HeroConfig = {
-  title: 'The Landing Page Builder for Modern Teams',
-  subtitle: 'Create stunning landing pages in minutes',
+  title: 'The Landing Page Builder for Modern Teams - Preview Version 🎉',
+  subtitle: 'Create stunning landing pages in minutes - Live Preview Testing',
   description:
     'Create stunning, conversion-optimized landing pages in minutes. No coding required. Beautiful templates, smart analytics, and powerful integrations—all in one place.',
   backgroundGradient: true,
