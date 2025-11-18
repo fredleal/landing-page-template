@@ -4,8 +4,11 @@ import { useState, useEffect } from 'react'
  * Hook para gerenciar configurações de página no localStorage
  * Permite salvar e carregar dados customizados pelos usuários
  */
-export function usePageConfig(key: string, defaultValue: any) {
-  const [data, setData] = useState<any>(null)
+export function usePageConfig<T = Record<string, unknown>>(
+  key: string,
+  defaultValue: T
+) {
+  const [data, setData] = useState<T | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
   // Carregar dados do localStorage ao montar
@@ -13,7 +16,7 @@ export function usePageConfig(key: string, defaultValue: any) {
     try {
       const saved = localStorage.getItem(`page-config-${key}`)
       if (saved) {
-        setData(JSON.parse(saved))
+        setData(JSON.parse(saved) as T)
       } else {
         setData(defaultValue)
       }
@@ -26,7 +29,7 @@ export function usePageConfig(key: string, defaultValue: any) {
   }, [key, defaultValue])
 
   // Salvar dados no localStorage
-  const saveConfig = (newData: any) => {
+  const saveConfig = (newData: T) => {
     try {
       localStorage.setItem(`page-config-${key}`, JSON.stringify(newData))
       setData(newData)
