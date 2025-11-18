@@ -1,0 +1,165 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+/* Typography */
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-white text-neutral-900 font-sans;
+  }
+
+  h1 {
+    @apply text-display-lg font-bold;
+  }
+
+  h2 {
+    @apply text-heading-xl font-bold;
+  }
+
+  h3 {
+    @apply text-heading-lg font-bold;
+  }
+
+  h4 {
+    @apply text-heading-md font-semibold;
+  }
+
+  h5 {
+    @apply text-heading-sm font-semibold;
+  }
+
+  p {
+    @apply text-body-base text-neutral-700;
+  }
+
+  a {
+    @apply text-primary-500 hover:text-primary-700 transition-colors duration-200;
+  }
+
+  button {
+    @apply transition-all duration-200;
+  }
+}
+
+/* Custom Components */
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply px-6 py-3 bg-primary-500 text-white font-semibold rounded-xl hover:bg-primary-600 active:bg-primary-700 disabled:bg-neutral-300 disabled:cursor-not-allowed transition-all duration-200 shadow-base;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-secondary-500 text-white font-semibold rounded-xl hover:bg-secondary-600 active:bg-secondary-700 disabled:bg-neutral-300 disabled:cursor-not-allowed transition-all duration-200 shadow-base;
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 border-2 border-primary-500 text-primary-500 font-semibold rounded-xl hover:bg-primary-50 active:bg-primary-100 disabled:border-neutral-300 disabled:text-neutral-300 disabled:cursor-not-allowed transition-all duration-200;
+  }
+
+  .btn-ghost {
+    @apply px-6 py-3 text-primary-500 font-semibold rounded-xl hover:bg-primary-50 active:bg-primary-100 disabled:text-neutral-300 disabled:cursor-not-allowed transition-all duration-200;
+  }
+
+  .btn-small {
+    @apply px-4 py-2 text-sm rounded-lg;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white rounded-2xl p-6 shadow-base hover:shadow-lg transition-shadow duration-200;
+  }
+
+  .card-elevated {
+    @apply bg-white rounded-2xl p-6 shadow-elevation hover:shadow-xl transition-shadow duration-200;
+  }
+
+  .card-gradient {
+    @apply bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-6 shadow-base;
+  }
+
+  /* Sections */
+  .section {
+    @apply py-section-md px-gutter;
+  }
+
+  .section-lg {
+    @apply py-section-lg px-gutter;
+  }
+
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-caption font-semibold;
+  }
+
+  .badge-primary {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-caption font-semibold bg-primary-100 text-primary-700;
+  }
+
+  .badge-secondary {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-caption font-semibold bg-secondary-100 text-secondary-700;
+  }
+
+  .badge-accent {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-caption font-semibold bg-accent-100 text-accent-700;
+  }
+
+  .badge-success {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-caption font-semibold bg-success-100 text-success-700;
+  }
+
+  /* Text Utilities */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-alt {
+    @apply bg-gradient-to-r from-accent-500 to-primary-500 bg-clip-text text-transparent;
+  }
+
+  /* Effects */
+  .glass {
+    @apply backdrop-blur-md bg-white/80 border border-white/20;
+  }
+
+  .glow {
+    @apply shadow-[0_0_20px_rgba(90,155,255,0.3)];
+  }
+
+  .glow-secondary {
+    @apply shadow-[0_0_20px_rgba(165,115,245,0.3)];
+  }
+}
+
+/* Animations */
+@layer utilities {
+  .animate-fade-in-up {
+    @apply animate-fade-up;
+  }
+
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .delay-400 {
+    animation-delay: 400ms;
+  }
+}
