@@ -2,15 +2,10 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
-  "nodeVersion": "20.x",
   "env": {
     "VITE_API_URL": "https://api.example.com"
   },
   "envPrefix": "VITE_",
-  "preview": {
-    "teamId": null,
-    "projectId": null
-  },
   "rewrites": [
     {
       "source": "/(.*)",
