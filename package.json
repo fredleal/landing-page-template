@@ -14,7 +14,7 @@
     "test:coverage": "vitest --coverage"
   },
   "dependencies": {
-    "@fredleal/saas-components": "file:../template-saas-ecommerce",
+    "@fredleal/saas-components": "github:fredleal/template-saas-ecommerce#main",
     "@rjsf/core": "^6.1.1",
     "@rjsf/utils": "^6.1.1",
     "@rjsf/validator-ajv8": "^6.1.1",
