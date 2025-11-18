@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import Form from '@rjsf/core'
-import { RJSFSchema, CustomValidator } from '@rjsf/utils'
+import type { RJSFSchema } from '@rjsf/utils'
 import validator from '@rjsf/validator-ajv8'
-import type { ComponentSchema } from '../types/schema'
+import type { ComponentSchema } from '@fredleal/saas-components'
 
 interface AdminPanelProps {
   schema: ComponentSchema

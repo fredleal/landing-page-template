@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { usePageConfig } from '@/hooks/usePageConfig'
 import { AdminPanel } from '@/components/AdminPanel'
-import { heroSchema } from '@/schemas/hero.schema'
+import { schemaRegistry } from '@fredleal/saas-components/schemas'
 
 const DEFAULT_HERO_CONFIG = {
   title: 'Landing Page Builder for Modern Teams',
@@ -69,7 +69,7 @@ export default function AdminPage() {
 
       {/* Admin Content */}
       <AdminPanel
-        schema={heroSchema}
+        schema={schemaRegistry.Hero}
         initialData={heroConfig}
         onSave={saveConfig}
         title="Hero Section"
