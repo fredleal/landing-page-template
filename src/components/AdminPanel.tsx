@@ -6,26 +6,26 @@ import type { RJSFSchema } from '@rjsf/utils'
 import validator from '@rjsf/validator-ajv8'
 import type { ComponentSchema } from '@fredleal/saas-components'
 
-interface AdminPanelProps {
+interface AdminPanelProps<T = Record<string, unknown>> {
   schema: ComponentSchema
-  onSave: (data: any) => void
-  initialData?: any
+  onSave: (data: Partial<T>) => void
+  initialData?: Partial<T>
   title?: string
   description?: string
 }
 
-export function AdminPanel({
+export function AdminPanel<T = Record<string, unknown>>({
   schema,
   onSave,
-  initialData = {},
+  initialData = {} as Partial<T>,
   title = 'Component Editor',
   description,
-}: AdminPanelProps) {
-  const [formData, setFormData] = useState(initialData)
+}: AdminPanelProps<T>) {
+  const [formData, setFormData] = useState<Partial<T>>(initialData)
   const [isSaving, setIsSaving] = useState(false)
   const [saveSuccess, setSaveSuccess] = useState(false)
 
-  const handleSubmit = async (data: any) => {
+  const handleSubmit = async (data: { formData: Partial<T> }) => {
     setIsSaving(true)
     try {
       // Simula delay de salvamento
@@ -69,8 +69,8 @@ export function AdminPanel({
             schema={schema as RJSFSchema}
             validator={validator}
             formData={formData}
-            onChange={e => setFormData(e.formData)}
-            onSubmit={handleSubmit}
+            onChange={e => setFormData(e.formData ?? {})}
+            onSubmit={e => handleSubmit({ formData: e.formData ?? {} })}
             uiSchema={{
               'ui:submitButtonOptions': {
                 submitText: 'Salvar Alterações',

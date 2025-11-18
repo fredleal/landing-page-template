@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { usePageConfig } from '@/hooks/usePageConfig'
 import { AdminPanel } from '@/components/AdminPanel'
 import { schemaRegistry } from '@fredleal/saas-components/schemas'
@@ -25,11 +25,16 @@ const DEFAULT_HERO_CONFIG = {
 
 export default function AdminPage() {
   const [mounted, setMounted] = useState(false)
+  const mountedRef = useRef(false)
   const { data: heroConfig, saveConfig } = usePageConfig('hero', DEFAULT_HERO_CONFIG)
 
   // Previne erro de hidratação
   useEffect(() => {
-    setMounted(true)
+    if (!mountedRef.current) {
+      mountedRef.current = true
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setMounted(true)
+    }
   }, [])
 
   if (!mounted || !heroConfig) {
@@ -71,7 +76,9 @@ export default function AdminPage() {
       <AdminPanel
         schema={schemaRegistry.Hero}
         initialData={heroConfig}
-        onSave={saveConfig}
+        onSave={(data) => {
+          saveConfig(data as typeof DEFAULT_HERO_CONFIG)
+        }}
         title="Hero Section"
         description="Customize the main hero section of your landing page. Changes are saved automatically to your browser."
       />

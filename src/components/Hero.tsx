@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { HeroSection, type HeroSectionProps } from '@fredleal/saas-components'
 
 interface HeroConfig extends Omit<HeroSectionProps, 'primaryCTA' | 'secondaryCTA'> {
@@ -25,17 +25,22 @@ const DEFAULT_CONFIG: HeroConfig = {
 export function Hero() {
   const [config, setConfig] = useState<HeroConfig>(DEFAULT_CONFIG)
   const [mounted, setMounted] = useState(false)
+  const mountedRef = useRef(false)
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem('page-config-hero')
-      if (saved) {
-        setConfig(JSON.parse(saved))
+    if (!mountedRef.current) {
+      mountedRef.current = true
+      try {
+        const saved = localStorage.getItem('page-config-hero')
+        if (saved) {
+          // eslint-disable-next-line react-hooks/set-state-in-effect
+          setConfig(JSON.parse(saved))
+        }
+      } catch (error) {
+        console.error('Erro ao carregar configuração:', error)
       }
-    } catch (error) {
-      console.error('Erro ao carregar configuração:', error)
+      setMounted(true)
     }
-    setMounted(true)
   }, [])
 
   if (!mounted) return null
